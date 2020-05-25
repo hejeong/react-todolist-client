@@ -27,3 +27,27 @@
 .login-and-signup {
     float: right;
 }
+
+#login-form {
+    width: 220px;
+    margin: 0 auto;
+
+}
+
+#login-form-container{
+    width: 350px;
+    height: 300px;
+    border: #dadada 1px solid;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px 0px;
+}
+
+.submit-btn {
+    float: right;
+}
+
+.login-title {
+    text-align: center;
+}

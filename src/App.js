@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home.js';
-import Login from './Login.js';
+import LoginForm from './components/LoginForm';
+import Logout from './Logout';
 import Navbar from './Navbar.js';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Layout, Typography } from 'antd';
@@ -19,10 +20,11 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-          </Switch>
-          <Switch>
-            <Route path="/login" exact>
-              <Login />
+            <Route path="/login">
+              <LoginForm />
+            </Route>
+            <Route path="/logout">
+              <Logout />
             </Route>
           </Switch>
         </Content>
