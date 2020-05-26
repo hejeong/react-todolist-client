@@ -71,3 +71,30 @@ export const signUp = cred => {
     });
     }
 }
+
+
+export const refreshToken = (message) => {
+    return dispatch => {
+        return fetch('http://localhost:8000/api/token/refresh', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',   
+                    },
+                    body: JSON.stringify({
+                        "refresh": localStorage.getItem("jwt-refresh")
+                    })
+                })
+                .then(response => {
+                    if(response.status == 200){
+                        return response.json()
+                    }else if (response.status == 401) {
+                        // make the user log in again
+                        message.error("Your session has expired. Please log in again.")
+                    }
+                })
+                .then(data => {
+                    console.log("Refreshed")
+                    localStorage.setItem('jwt-access', data.access)
+                })
+    }
+}

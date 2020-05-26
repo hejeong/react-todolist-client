@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './Home.js';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
+import TodoListContainer from './containers/TodoListContainer';
 import Logout from './Logout';
 import Navbar from './Navbar.js';
 import { Switch, Route, Link } from 'react-router-dom';
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignUpForm />
+            </Route>
+            <Route path='/todos'>
+              <TodoListContainer />
             </Route>
             <Route path="/logout">
               <Logout />
