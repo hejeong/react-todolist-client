@@ -5,17 +5,10 @@ import { Space, Button } from 'antd';
 
 function Navbar({loggedIn}) {
   if(!loggedIn){
-    return (
-      <div className="navbar">
-        <Space align='center' className='login-and-signup' >
-          <Button type='primary' className='login-btn'><Link to='/login'>Login</Link></Button>
-          <Button type='primary'><Link to='/signup'>Signup</Link></Button>
-        </Space>
-      </div>
-    );
+    return (<Button type='link' className='home-logo'><Link to='/'>WhatTodo</Link></Button>)
   }
   return(
-    <Space align='center' className='login-and-signup' >
+    <Space align='center' id='logout' >
       <Button type='primary'><Link to='/logout'>Logout</Link></Button>
     </Space>
   );

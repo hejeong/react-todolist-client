@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { Alert, Button, Form, Input, Typography, message } from 'antd';
+import { Alert, Button, Form, Input, PageHeader, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { signUp, resetError } from '../actions/user';
 
@@ -25,7 +25,11 @@ const SignupForm = ({loggedIn, resetError, signUp, signUpError, username}) => {
     }
     return (
         <div id="signup-form-container">
-            <div className='login-title'><Title>WhatTodo</Title></div>
+            <PageHeader
+                    className="site-page-header"
+                    onBack={() => window.history.back()}
+                    title="WhatTodo"
+            />
             <Form id='login-form' onFinish={handleSubmit}>
                 <Title className='login-title' level={4}>Create your account</Title>
                 <FormItem 
@@ -59,7 +63,11 @@ const SignupForm = ({loggedIn, resetError, signUp, signUpError, username}) => {
                 >
                     <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder='Confirm Password'/>
                 </FormItem>
-                <Button type="primary" htmlType='submit' className='submit-btn'>Create Account</Button>
+                <FormItem>
+                    <Button type="primary" htmlType='submit' className='submit-btn'>Create Account</Button>
+                    Have an account? <a href="/login">Login Here</a>
+                </FormItem>
+               
             </Form>
         </div>
     )

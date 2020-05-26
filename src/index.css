@@ -16,16 +16,19 @@
 }
 
 .ant-btn-primary.login-btn{
-    background-color: #1f1f1f;
-    border-color: white;
-}
-
-.white-logo {
+    background-color: transparent;
+    border-color: #1f1f1f;
     color: #1f1f1f;
 }
 
-.login-and-signup {
-    float: right;
+.ant-btn-link.home-logo {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.home {
+    text-align: center;
+    margin-top: 30%;
 }
 
 #login-form {
@@ -33,19 +36,22 @@
     margin: 0 auto;
 
 }
-
+#logout {
+    float: right;
+}
 #login-form-container{
     width: 350px;
-    height: 300px;
+    height: 320px;
     border: #dadada 1px solid;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 
 .submit-btn {
-    float: right;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .login-title {
@@ -60,5 +66,5 @@
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }

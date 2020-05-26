@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { Alert, Button, Form, Input, Typography, message } from 'antd';
+import { Alert, Button, Form, Input, PageHeader, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { login } from '../actions/user';
 
@@ -24,7 +24,11 @@ class LoginForm extends Component {
         }
         return (
             <div id="login-form-container">
-                <div className='login-title'><Title>WhatTodo</Title></div>
+                <PageHeader
+                    className="site-page-header"
+                    onBack={() => window.history.back()}
+                    title="WhatTodo"
+                />
                 <Form id='login-form' onFinish={this.handleSubmit}>
                     <Title className='login-title' level={4}>Login</Title>
                     <FormItem 
@@ -40,6 +44,7 @@ class LoginForm extends Component {
                         <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder='Password'/>
                     </FormItem>
                     <Button type="primary" htmlType='submit' className='submit-btn'>Login</Button>
+                    Or <a href="/signup">register now!</a>
                 </Form>
             </div>
         )
