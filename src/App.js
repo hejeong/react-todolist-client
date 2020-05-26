@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home.js';
 import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
 import Logout from './Logout';
 import Navbar from './Navbar.js';
 import { Switch, Route, Link } from 'react-router-dom';
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/login">
               <LoginForm />
+            </Route>
+            <Route path="/signup">
+              <SignUpForm />
             </Route>
             <Route path="/logout">
               <Logout />

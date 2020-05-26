@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Space, Button } from 'antd';
 
 function Navbar({loggedIn}) {
-  console.log(window.location.pathname)
   if(!loggedIn){
     return (
       <div className="navbar">

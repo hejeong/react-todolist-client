@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state=initialState, action) => {
     switch(action.type){
-    case "LOGIN_ERROR":
+    case "LOGIN_SIGNUP_ERROR":
         return Object.assign({}, state, {error: action.data.error})
     case "LOGOUT":
         return initialState
