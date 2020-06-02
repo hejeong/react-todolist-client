@@ -1,4 +1,5 @@
-import { refreshToken } from './user.js';
+import {message} from 'antd';
+
 
 export const getTodos = () => {
     return dispatch => {
@@ -11,9 +12,21 @@ export const getTodos = () => {
                     
                     }
                 )
-                .then(response => response.json())
+                .then(response => {
+                    if(response.status === 200){
+                        // on success
+                        return response.json()
+                    }else if(response.status === 401){
+                        // access token expired, remove token
+                        localStorage.removeItem("jwt-access")
+                        message.info("Your session has expired. Please log in again.");
+                        dispatch({type:"LOGOUT"})
+                    }
+                })
                 .then(data => {
-                    dispatch({type: 'RECEIVED_TODOS', todos: data})
+                    if(data){
+                        dispatch({type: 'RECEIVED_TODOS', todos: data})
+                    }
                 })
     }
 }
@@ -31,15 +44,28 @@ export const createTodo = (formData, toggleLoading, toggleModal, form, message) 
                 body: JSON.stringify(formData)
             }
             )
-            .then(response => response.json())
+            .then(response => {
+                if(response.status === 201){
+                    // on success
+                    return response.json()
+                }else if(response.status === 401){
+                    // access token expired, remove token
+                    localStorage.removeItem("jwt-access")
+                    message.info("Your session has expired. Please log in again.");
+                    dispatch({type:"LOGOUT"})
+                }
+            })
             .then(data => {
-                setTimeout(()=>{
-                    toggleLoading()
-                    toggleModal()
-                    form.resetFields()
-                    dispatch({type:"ADD_CREATED_TODO", todo: data})
-                    message.success("Task created.")
-                }, 2000);
+                if(data){
+                    setTimeout(()=>{
+                        toggleLoading()
+                        toggleModal()
+                        form.resetFields()
+                        dispatch({type:"ADD_CREATED_TODO", todo: data})
+                        message.success("Task created.")
+                    }, 2000);
+                }
+               
             })
         )
     }
@@ -58,13 +84,25 @@ export const editTodo = (id, formData, message, toggleDrawer, toggleFormDrawer) 
                 body: JSON.stringify(formData)
             }
             )
-            .then(response => response.json())
+            .then(response => {
+                if(response.status === 200){
+                    // on success
+                    return response.json()
+                }else if(response.status === 401){
+                    // access token expired, remove token
+                    localStorage.removeItem("jwt-access")
+                    message.info("Your session has expired. Please log in again.");
+                    dispatch({type:"LOGOUT"})
+                }
+            })
             .then(data => {
-                data['id'] = id
-                dispatch({type:"EDIT_TODO_SUCCESS", data: {todo: data, todoID: id}})
-                toggleDrawer()
-                toggleFormDrawer()
-                message.success("Task has been updated.")
+                if(data){
+                    data['id'] = id
+                    toggleDrawer()
+                    toggleFormDrawer()
+                    dispatch({type:"EDIT_TODO_SUCCESS", data: {todo: data, todoID: id}})
+                    message.success("Task has been updated.")
+                }
             })
         )
     }
@@ -82,13 +120,15 @@ export const deleteTodo = (id, message) => {
                 })
                 .then(response => {
                     // Django Rest Framework DELETE does not return anything except response code
-                    if(response.status == 204){
+                    if(response.status === 204){
                         // on success
                         dispatch({type:"DELETE_TODO", todoID: id});
                         message.success("Task deleted.");
-                    }else if(response.status == 401){
-                        // access token expired, try refresh token
-                        refreshToken(message);
+                    }else if(response.status === 401){
+                        // access token expired, remove token
+                        localStorage.removeItem("jwt-access")
+                        message.info("Your session has expired. Please log in again.");
+                        dispatch({type:"LOGOUT"})
                     }
                 })
                 .catch(error => {

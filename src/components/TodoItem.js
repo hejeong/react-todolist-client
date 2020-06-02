@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Button, Drawer, Form, Space, message } from 'antd';
+import { Button, Checkbox, Drawer, Form, Space, message } from 'antd';
 import EditTodoForm from './EditTodoForm';
 import { deleteTodo, editTodo } from '../actions/todo';
 
@@ -34,14 +34,21 @@ class TodoItem extends Component {
     handleDelete = () => {
         this.props.deleteTodo(this.props.todo.id, message)
     }
-    
 
+    handleOnCheck = (event) => {
+        
+    }
+    
     render(){
         return(
-            <>
+            <>  
+                <Checkbox onChange={this.handleOnCheck}>
                 <Button type="default" onClick={this.toggleDrawer}>
-                    {this.props.todo.title} 
+                    
+                        {this.props.todo.title} 
+                    
                 </Button>
+                </Checkbox>
                 <Drawer
                     title={this.props.todo.title}
                     width={400}

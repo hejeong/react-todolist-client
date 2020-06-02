@@ -27,9 +27,6 @@ class TodoListContainer extends Component {
     }
     
     render(){
-        if(!this.props.loggedIn){
-            return <Redirect to='/login' />
-        }
         return(
         <div id='todo-list-container'>
             <Space size={30}>

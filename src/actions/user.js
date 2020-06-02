@@ -62,7 +62,6 @@ export const signUp = cred => {
                                             }})
         }else {
             localStorage.setItem('jwt-access', data.access)
-            localStorage.setItem('jwt-refresh', data.refresh)
             dispatch({type: "SET_USERNAME", username: cred.username})
         }
     })
@@ -73,28 +72,28 @@ export const signUp = cred => {
 }
 
 
-export const refreshToken = (message) => {
+export const checkToken = () => {
     return dispatch => {
-        return fetch('http://localhost:8000/api/token/refresh', {
+        return fetch('http://localhost:8000/api/token/verify', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',   
                     },
                     body: JSON.stringify({
-                        "refresh": localStorage.getItem("jwt-refresh")
+                        "token": localStorage.getItem("jwt-access")
                     })
                 })
                 .then(response => {
                     if(response.status == 200){
                         return response.json()
                     }else if (response.status == 401) {
-                        // make the user log in again
-                        message.error("Your session has expired. Please log in again.")
+                        // remove the expired access token
+                        localStorage.removeItem("jwt-access")
                     }
                 })
                 .then(data => {
-                    console.log("Refreshed")
-                    localStorage.setItem('jwt-access', data.access)
+                    dispatch({type: "SET_USERNAME", username: data.username})
                 })
+                .catch(error => console.log(error))
     }
 }
