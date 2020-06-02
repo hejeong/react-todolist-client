@@ -27,4 +27,5 @@ artifacts:
     files:
         - "**/*"
     discard-paths: no
+    # build into dist directory
     base-directory: dist
