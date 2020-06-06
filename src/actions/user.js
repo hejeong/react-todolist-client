@@ -12,7 +12,7 @@ export const resetError = () =>{
 
 export const login = cred => {
     return dispatch => { 
-        return fetch(`http://localhost:8000/api/token`, {
+        return fetch(`http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/token`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json'
@@ -43,7 +43,7 @@ export const login = cred => {
 
 export const signUp = cred => {
     return dispatch => { 
-        return fetch(`http://localhost:8000/api/users`, {
+        return fetch(`http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/users`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json'
@@ -74,7 +74,7 @@ export const signUp = cred => {
 
 export const checkToken = () => {
     return dispatch => {
-        return fetch('http://localhost:8000/api/token/verify', {
+        return fetch('http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/token/verify', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',   

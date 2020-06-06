@@ -3,7 +3,7 @@ import {message} from 'antd';
 
 export const getTodos = () => {
     return dispatch => {
-        return fetch('http://localhost:8000/api/todos', {
+        return fetch('http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/todos', {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + localStorage.getItem('jwt-access'),
@@ -35,7 +35,7 @@ export const getTodos = () => {
 export const createTodo = (formData, toggleLoading, toggleModal, form, message) => {
     return dispatch => {
         return (
-            fetch('http://localhost:8000/api/todos/', {
+            fetch('http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/todos/', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('jwt-access'),
@@ -75,7 +75,7 @@ export const createTodo = (formData, toggleLoading, toggleModal, form, message) 
 export const editTodo = (id, formData, message, toggleDrawer, toggleFormDrawer) => {
     return dispatch => {
         return (
-            fetch(`http://localhost:8000/api/todos/${id}/`, {
+            fetch(`http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/todos/${id}/`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('jwt-access'),
@@ -111,7 +111,7 @@ export const editTodo = (id, formData, message, toggleDrawer, toggleFormDrawer) 
 
 export const deleteTodo = (id, message) => {
     return dispatch => {
-        return fetch('http://localhost:8000/api/todos/' + id, {
+        return fetch('http://Whattodoapp-env.eba-jpp393pq.us-east-1.elasticbeanstalk.com/api/todos/' + id, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('jwt-access'),
