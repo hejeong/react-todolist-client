@@ -1,3 +1,5 @@
+import { message } from 'antd';
+
 export const logout = () => {
     return {
         type: "LOGOUT"
@@ -26,12 +28,14 @@ export const login = cred => {
     .then(data => {
         // if login error -> data contains 'detail' message
         if(data.detail){
+            message.error("Incorrect username or password. Please try again.")
             dispatch({type: "LOGIN_SIGNUP_ERROR", data: {
                                                 error: "Incorrect username or password. Please try again.",
                                             }})
         }else {
             localStorage.setItem('jwt-access', data.access)
             localStorage.setItem('jwt-refresh', data.refresh)
+            message.success("Logged in as " + cred.username)
             dispatch({type: "SET_USERNAME", username: cred.username})
         }
     })

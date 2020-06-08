@@ -33,15 +33,9 @@ class App extends Component {
           </Header>
           <Content id='content'>
             <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
-              <Route path="/login">
-                <LoginForm />
-              </Route>
-              <Route path="/signup">
-                <SignUpForm />
-              </Route>
+              <Route path="/" exact component={Home} />
+              <Route path="/login" component={LoginForm} />
+              <Route path="/signup" component={SignUpForm} />
               <PrivateRoute path='/todos' component={TodoListContainer}>
               </PrivateRoute>
               <Route path="/logout">

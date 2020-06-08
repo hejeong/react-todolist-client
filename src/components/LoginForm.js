@@ -11,17 +11,15 @@ const { Title } = Typography;
 
 
 class LoginForm extends Component {
+
+    componentDidUpdate(){
+        this.props.history.push("/");
+    }
     handleSubmit = (values) => {
         this.props.login(values)
     }
     render(){
-        if(this.props.loggedIn){
-            message.success("Logged in as " + this.props.username)
-            return <Redirect to='/' />
-        }
-        if(this.props.loginError){
-            message.error(this.props.loginError)
-        }
+    
         return (
             <div id="login-form-container">
                 <PageHeader
